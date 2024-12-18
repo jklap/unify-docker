@@ -1,4 +1,5 @@
-FROM golang:1.22-bullseye as permset
+# https://hub.docker.com/_/golang/tags?page=1&name=bullseye
+FROM golang:1.23.3-bullseye as permset
 WORKDIR /src
 RUN git clone https://github.com/jacobalberty/permset.git /src && \
     mkdir -p /out && \
@@ -10,6 +11,11 @@ LABEL maintainer="Jacob Alberty <jacob.alberty@foundigital.com>"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+# https://ui.com/download/software/uxg-lite
+# https://community.ui.com/releases
+# Unifi Network Application
+# Debian/Ubuntu package
+#ARG PKGURL=https://dl.ui.com/unifi/8.6.9-0f45j609pu/unifi_sysvinit_all.deb
 ARG PKGURL=https://dl.ui.com/unifi/9.0.114/unifi_sysvinit_all.deb
 
 ENV BASEDIR=/usr/lib/unifi \
@@ -34,9 +40,9 @@ ENV BASEDIR=/usr/lib/unifi \
 # This should be integrated with the main run because it duplicates a lot of the steps there
 # but for now while shoehorning gosu in it is seperate
 RUN set -eux; \
-	apt-get update; \
-	apt-get install -y gosu; \
-	rm -rf /var/lib/apt/lists/*
+    apt-get update; \
+    apt-get install -y gosu; \
+    rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /usr/unifi \
      /usr/local/unifi/init.d \
