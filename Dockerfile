@@ -1,5 +1,5 @@
 # https://hub.docker.com/_/golang/tags?page=1&name=bullseye
-FROM golang:1.23.3-bullseye as permset
+FROM golang:1.24.3-bullseye as permset
 WORKDIR /src
 RUN git clone https://github.com/jacobalberty/permset.git /src && \
     mkdir -p /out && \
