@@ -15,7 +15,7 @@ apt-get install -qy --no-install-recommends \
     dirmngr \
     gpg \
     gpg-agent \
-    openjdk-17-jre-headless \
+    openjdk-21-jre-headless \
     procps \
     libcap2-bin \
     tzdata
@@ -39,8 +39,14 @@ curl -L -o /usr/share/keyrings/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo
 #echo 'deb [signed-by=/usr/share/keyrings/mongodb-server-6.0.pgp] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/6.0 multiverse' | tee /etc/apt/sources.list.d/100-mongodb-server.list
 #curl -s -N https://pgp.mongodb.com/server-6.0.asc | gpg --dearmor > /usr/share/keyrings/mongodb-server-6.0.pgp
 
-echo 'deb [signed-by=/usr/share/keyrings/mongodb-server-7.0.pgp] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/7.0 multiverse' | tee /etc/apt/sources.list.d/100-mongodb-server.list
-curl -s -N https://pgp.mongodb.com/server-7.0.asc | gpg --dearmor > /usr/share/keyrings/mongodb-server-7.0.pgp
+#echo 'deb [signed-by=/usr/share/keyrings/mongodb-server-7.0.pgp] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/7.0 multiverse' | tee /etc/apt/sources.list.d/100-mongodb-server.list
+#curl -s -N https://pgp.mongodb.com/server-7.0.asc | gpg --dearmor > /usr/share/keyrings/mongodb-server-7.0.pgp
+
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
+
+#echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu noble/mongodb-org/8.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-8.0.list
+#curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | gpg --dearmor > /usr/share/keyrings/mongodb-server-8.0.gpg
 
 apt-get update
 
