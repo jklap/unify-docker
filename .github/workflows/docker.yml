@@ -1,12 +1,13 @@
 name: Publish Docker image
 on:
-  push:
-    branches:
-      - 'master'
-      - 'beta'
-      - 'hotfix/*'
-    tags:
-      - 'v*.*.*'
+  workflow_dispatch:
+#  push:
+#    branches:
+#      - 'master'
+#      - 'beta'
+#      - 'hotfix/*'
+#    tags:
+#      - 'v*.*.*'
 
 env:
   TEST_TAG: jacobalberty/unifi:test
