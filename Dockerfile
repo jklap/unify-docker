@@ -5,7 +5,7 @@ RUN git clone https://github.com/jacobalberty/permset.git /src && \
     mkdir -p /out && \
     go build -ldflags "-X main.chownDir=/unifi" -o /out/permset
 
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 LABEL maintainer="Jacob Alberty <jacob.alberty@foundigital.com>"
 
