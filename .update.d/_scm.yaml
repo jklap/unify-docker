@@ -1,7 +1,7 @@
 # vim: set expandtab ts=2 sw=2 :
 
 scms:
-  ghe:
+  gh:
     # https://www.updatecli.io/docs/plugins/scm/github/
     kind: github
     disabled: false

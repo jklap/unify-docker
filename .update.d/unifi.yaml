@@ -38,6 +38,7 @@ targets:
     # https://www.updatecli.io/docs/plugins/resource/file/
     kind: file
     sourceid: versionCheck
+    scmid: gh
     spec:
       file: Dockerfile
       # ARG PKGURL=https://dl.ui.com/unifi/9.5.21-6nxxr6v29z/unifi_sysvinit_all.deb

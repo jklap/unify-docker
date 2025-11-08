@@ -23,6 +23,7 @@ targets:
     # https://www.updatecli.io/docs/plugins/resource/file/
     kind: file
     sourceid: versionCheck
+    scmid: gh
     spec:
       file: docker-compose.yml
       matchpattern: 'image: mongo:([0-9.]+)'

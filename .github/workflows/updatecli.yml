@@ -32,8 +32,8 @@ jobs:
 
       - name: Updatecli Apply
         if: github.ref == 'refs/heads/main'
-        #env:
-        #  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "### Applying updates" > $GITHUB_STEP_SUMMARY
           for FILE in $(grep -v '^#' .update.d/checks.lst); do
