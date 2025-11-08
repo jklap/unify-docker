@@ -1,0 +1,29 @@
+# vim: set expandtab ts=2 sw=2 :
+
+name: 'deps: Update golang image in Dockerfile'
+pipelineid: golang-image
+
+sources:
+  versionCheck:
+    name: Golang (bullseye)
+    # https://www.updatecli.io/docs/plugins/resource/docker_image/
+    kind: dockerimage
+    spec:
+      image: "golang"
+      tagFilter: '^1\.\d*\.\d*-bullseye$'
+      versionfilter:
+        kind: regex/semver
+        regex: '^(1\.\d*\.\d*)-bullseye$'
+        pattern: '*'
+
+targets:
+  dockerFile:
+    name: 'deps: bump golang image to {{ source "versionCheck" }}'
+    # https://www.updatecli.io/docs/plugins/resource/dockerfile/
+    kind: dockerfile
+    sourceid: versionCheck
+    spec:
+      file: Dockerfile
+      instruction:
+        keyword: "ARG"
+        matcher: "BULLSEYE_VERSION"
