@@ -1,5 +1,10 @@
 # https://hub.docker.com/_/golang/tags?page=1&name=bullseye
-FROM golang:1.24.6-bullseye AS permset
+ARG BULLSEYE_VERSION=1.24.6-bullseye
+FROM golang:${BULLSEYE_VERSION} as permset
+# create a env version of the ARG so it's available in the container
+ARG BULLSEYE_VERSION=1.24.6-bullseye
+ENV BULLSEYE_VERSION=$BULLSEYE_VERSION
+
 WORKDIR /src
 RUN git clone https://github.com/jacobalberty/permset.git /src && \
     mkdir -p /out && \
@@ -15,7 +20,6 @@ ARG DEBIAN_FRONTEND=noninteractive
 # https://community.ui.com/releases
 # Unifi Network Application
 # Debian/Ubuntu package
-#ARG PKGURL=https://dl.ui.com/unifi/9.4.19-0f76duk082/unifi_sysvinit_all.deb
 ARG PKGURL=https://dl.ui.com/unifi/9.5.21-6nxxr6v29z/unifi_sysvinit_all.deb
 
 ENV BASEDIR=/usr/lib/unifi \
