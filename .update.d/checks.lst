@@ -1,0 +1,4 @@
+golang-image.yaml
+mongo-image.yaml
+# TODO: need updatecli POST fixed for this to work
+#unifi.yaml

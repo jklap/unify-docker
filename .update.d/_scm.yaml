@@ -1,0 +1,24 @@
+# vim: set expandtab ts=2 sw=2 :
+
+scms:
+  ghe:
+    # https://www.updatecli.io/docs/plugins/scm/github/
+    kind: github
+    disabled: false
+    spec:
+      branch: '{{ requiredEnv "GITHUB_REF_NAME" }}'
+      workingbranch: true
+      workingbranchprefix: 'updatecli'
+      workingbranchseparator: '/'
+      # true, Updatecli also recreates the working branches that diverged from their base branch
+      force: false
+      # user and email to push changes as
+      user: '{{ requiredEnv "GITHUB_ACTOR" }}'
+      email: '{{ default "noreply@github.com" (env "GITHUB_EMAIL") }}'
+      owner: '{{ requiredEnv "GITHUB_REPOSITORY_OWNER" }}'
+      # https://masterminds.github.io/sprig/
+      repository: '{{ splitList "/" (requiredEnv "GITHUB_REPOSITORY") | last }}'
+      #token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      commitmessage:
+        squash: true
+        hidecredit: true

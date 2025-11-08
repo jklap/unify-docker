@@ -1,0 +1,45 @@
+# vim: set expandtab ts=2 sw=2 :
+name: Unifi
+pipelineid: unifi
+
+sources:
+  versionCheck:
+    kind: http
+    spec:
+      url: 'https://community.svc.ui.com/'
+      request:
+        headers:
+          Content-Type: 'application/json'
+          Accept: 'application/json'
+        verb: POST
+        body: |
+          {
+            "query":"query ReleaseFeedListQuery($tags:[String!],$offset:Int,$limit:Int,$sortBy:ReleasesSortBy,$searchTerm:String,$statuses:[ReleaseStatus!]) {releases(tags:$tags offset:$offset limit:$limit sortBy:$sortBy searchTerm:$searchTerm statuses:$statuses) {totalCount items {id title slug tags version createdAt status}}}",
+            "variables":{
+              "limit":1,
+              "offset":0,
+              "sortBy":"LATEST",
+              "tags":["unifi-network"],
+              "searchTerm":"application"
+            },
+            "operationName":"ReleaseFeedListQuery"
+          }
+    transformers:
+      - findsubmatch:
+          pattern: '"version":"([0-9.]*)"'
+          captureindex: 1 
+
+# https://dl.ui.com/unifi/9.5.21-6nxxr6v29z/unifi_sysvinit_all.deb
+# https://dl.ui.com/unifi/9.5.21/unifi_sysvinit_all.deb
+
+targets:
+  dockerFile:
+    name: 'deps: bump Unifi to {{ source "versionCheck" }}'
+    # https://www.updatecli.io/docs/plugins/resource/file/
+    kind: file
+    sourceid: versionCheck
+    spec:
+      file: Dockerfile
+      # ARG PKGURL=https://dl.ui.com/unifi/9.5.21-6nxxr6v29z/unifi_sysvinit_all.deb
+      matchpattern: 'ARG PKGURL=https://dl.ui.com/unifi/([^/]*)/unifi_sysvinit_all.deb'
+      content: 'ARG PKGURL=https://dl.ui.com/unifi/{{ source "versionCheck" }}/unifi_sysvinit_all.deb'

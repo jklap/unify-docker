@@ -1,0 +1,5 @@
+actions:
+  pr:
+    # https://www.updatecli.io/docs/plugins/actions/github/
+    kind: "github/pullrequest"
+    scmid: gh

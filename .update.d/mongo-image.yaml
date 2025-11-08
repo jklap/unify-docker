@@ -1,0 +1,29 @@
+# vim: set expandtab ts=2 sw=2 :
+
+name: 'deps: Update mongo image in docker-compose'
+pipelineid: mongo-image
+
+sources:
+  versionCheck:
+    name: mongo
+    # https://www.updatecli.io/docs/plugins/resource/docker_image/
+    kind: dockerimage
+    spec:
+      image: "mongo"
+      # mongo:7.0.25
+      tagFilter: '^7\.\d*\.\d*$'
+      versionfilter:
+        kind: regex/semver
+        regex: '^(7\.\d*\.\d*)$'
+        pattern: '*'
+
+targets:
+  dockerCompose:
+    name: 'deps: bump mongo image to {{ source "versionCheck" }}'
+    # https://www.updatecli.io/docs/plugins/resource/file/
+    kind: file
+    sourceid: versionCheck
+    spec:
+      file: docker-compose.yml
+      matchpattern: 'image: mongo:([0-9.]+)'
+      content: 'image: mongo:{{ source "versionCheck" }}'
