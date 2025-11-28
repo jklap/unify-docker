@@ -1,9 +1,9 @@
-# https://hub.docker.com/_/golang/tags?page=1&name=bullseye
-ARG BULLSEYE_VERSION=1.24.6-bullseye
-FROM golang:${BULLSEYE_VERSION} as permset
+# https://hub.docker.com/_/golang/tags?page=1&name=trixie
+ARG TRIXIE_VERSION=1.25.4-trixie
+FROM golang:${TRIXIE_VERSION} AS permset
 # create a env version of the ARG so it's available in the container
-ARG BULLSEYE_VERSION=1.24.6-bullseye
-ENV BULLSEYE_VERSION=$BULLSEYE_VERSION
+ARG TRIXIE_VERSION=1.25.4-trixie
+ENV TRIXIE_VERSION=$TRIXIE_VERSION
 
 WORKDIR /src
 RUN git clone https://github.com/jacobalberty/permset.git /src && \
