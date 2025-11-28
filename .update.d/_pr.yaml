@@ -3,3 +3,9 @@ actions:
     # https://www.updatecli.io/docs/plugins/actions/github/
     kind: "github/pullrequest"
     scmid: gh
+    spec:
+      #labels:
+        # labels must already exist on the repository
+        #- updatecli
+      assignees:
+        - jklap

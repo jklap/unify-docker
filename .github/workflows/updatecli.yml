@@ -45,6 +45,7 @@ jobs:
             echo "::group::${FILE}"
             updatecli apply \
               --config ".update.d/${FILE}"
-            [ $? == 0 ] || { echo "::error file=${FILE}::Failed to process ${FILE}"; }
+            RESULT=$?
             echo "::endgroup::"
+            [ $RESULT == 0 ] || { echo "::error file=${FILE}::Failed to process ${FILE}"; }
           done
