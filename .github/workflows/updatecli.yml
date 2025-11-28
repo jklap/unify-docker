@@ -30,6 +30,9 @@ jobs:
       - name: Install Updatecli in the runner
         # https://github.com/updatecli/updatecli-action
         uses: updatecli/updatecli-action@v2
+        with:
+          # version that contains our HTTP POST fixes
+          version: v0.111.0-rc.2
 
       - name: Updatecli Apply
         if: github.ref == 'refs/heads/main'
