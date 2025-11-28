@@ -28,6 +28,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Updatecli in the runner
+        # https://github.com/updatecli/updatecli-action
         uses: updatecli/updatecli-action@v2
 
       - name: Updatecli Apply
