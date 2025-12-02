@@ -20,7 +20,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 # https://community.ui.com/releases
 # Unifi Network Application
 # Debian/Ubuntu package
-ARG PKGURL=https://dl.ui.com/unifi/10.0.160/unifi_sysvinit_all.deb
+ARG PKGURL=https://dl.ui.com/unifi/10.0.161/unifi_sysvinit_all.deb
 
 ENV BASEDIR=/usr/lib/unifi \
     DATADIR=/unifi/data \
