@@ -1,8 +1,8 @@
 # https://hub.docker.com/_/golang/tags?page=1&name=trixie
-ARG TRIXIE_VERSION=1.25.4-trixie
+ARG TRIXIE_VERSION=1.25.5-trixie
 FROM golang:${TRIXIE_VERSION} AS permset
 # create a env version of the ARG so it's available in the container
-ARG TRIXIE_VERSION=1.25.4-trixie
+ARG TRIXIE_VERSION=1.25.5-trixie
 ENV TRIXIE_VERSION=$TRIXIE_VERSION
 
 WORKDIR /src
