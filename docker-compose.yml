@@ -1,7 +1,7 @@
 services:
   mongo:
     # https://hub.docker.com/_/mongo/tags?page=1&name=7.0
-    image: mongo:7.0.26
+    image: mongo:7.0.28
     container_name: unifi_mongo
     networks:
       unifi_priv:
