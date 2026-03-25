@@ -15,7 +15,7 @@ apt-get install -qy --no-install-recommends \
     dirmngr \
     gpg \
     gpg-agent \
-    openjdk-21-jre-headless \
+    openjdk-25-jre-headless \
     procps \
     libcap2-bin \
     tzdata
