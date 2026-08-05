@@ -1,8 +1,8 @@
 # https://hub.docker.com/_/golang/tags?page=1&name=trixie
-ARG TRIXIE_VERSION=1.26.1-trixie
+ARG TRIXIE_VERSION=1.26.5-trixie
 FROM golang:${TRIXIE_VERSION} AS permset
 # create a env version of the ARG so it's available in the container
-ARG TRIXIE_VERSION=1.26.1-trixie
+ARG TRIXIE_VERSION=1.26.5-trixie
 ENV TRIXIE_VERSION=$TRIXIE_VERSION
 
 WORKDIR /src
@@ -20,7 +20,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 # https://community.ui.com/releases
 # Unifi Network Application
 # Debian/Ubuntu package
-ARG PKGURL=https://dl.ui.com/unifi/10.1.89/unifi_sysvinit_all.deb
+ARG PKGURL=https://dl.ui.com/unifi/10.5.67-y6o74ax798/unifi_sysvinit_all.deb
 
 ENV BASEDIR=/usr/lib/unifi \
     DATADIR=/unifi/data \
